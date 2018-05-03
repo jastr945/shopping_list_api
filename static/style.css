@@ -1,0 +1,176 @@
+.brand {
+  font-family: 'Dancing Script', cursive;
+}
+
+#main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 1.2em;
+}
+
+#choices {
+  display: flex;
+  flex-direction: row;
+}
+
+#choices  > h4 {
+  margin-right: 0.5em;
+}
+
+#choices  > h4:hover {
+  cursor: pointer;
+  border-bottom: 1px solid black;
+}
+
+#loginForm, #signupForm {
+  display: flex;
+  flex-direction: row;
+}
+
+.info {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2em;
+  margin: 0.5em auto;
+}
+
+#welcome {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#welcome > h4 {
+  margin-bottom: 0;
+  margin-right: 0.5em;
+  font-family: 'Dancing Script', cursive;
+}
+
+#messages {
+  margin: auto;
+}
+
+.green {
+  background-color: #d5fdd5;
+  color: green;
+}
+
+.red {
+  background-color: #ffb2b2;
+  color: red;
+}
+
+#addItemForm {
+  display: flex;
+  flex-direction: row;
+  margin: 0.5em auto;
+  padding: 1em;
+}
+
+#addItemForm > input {
+  font-size: 1.2em;
+}
+
+#addItem {
+  border: 3px solid pink;
+  width: 7em;
+}
+
+button:hover {
+  background-color: #545454;
+  color: pink;
+}
+
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: pink;
+  height: auto;
+  padding: 0.5em;
+  margin-bottom: 1em;
+}
+
+.listRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: lightgrey;
+  width:100%;
+  height: auto;
+  padding: 0.5em 1em;
+  margin: 0.1em auto;
+}
+
+.listInfo {
+  display: flex;
+  align-items: center;
+}
+
+.editItemForm {
+  display: flex;
+  flex-direction: row;
+}
+
+.listButtons {
+  display: flex;
+  flex-direction: row;
+}
+
+.delete, .edit {
+  margin: auto 0.1em;
+}
+
+@media screen and (max-width: 1000px) {
+  .brand {
+    font-size: 1.5em;
+    padding-top: 0.5em;
+  }
+
+  #main {
+    font-size: 1em;
+  }
+
+  .editItemForm {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  #loginForm > input, #signupForm > input {
+    font-size: 0.9em;
+    width: 100px;
+  }
+}
+
+@media screen and (max-width: 780px) {
+  #messages > h4 {
+    font-size: 1em;
+  }
+
+  .info {
+    font-size: 1.5em;
+  }
+
+  #addItemForm {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.8em;
+  }
+
+  #addItem {
+    margin: 0.2em auto;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .listRow {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .listInfo, .listButtons {
+    margin: 0.1em auto;
+  }
+}

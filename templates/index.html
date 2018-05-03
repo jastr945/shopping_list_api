@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+  <link href="/static/style.css" rel="stylesheet">
+  <title>Shopping List</title>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-inner">
+          <h1 class="brand">Shopping List API Demo</h1>
+        </div>
+        <div class="navbar-right">
+          {% if user %}
+            <div id="welcome">
+              <h4>Hi, {{user}}!</h4>
+              <button id="logout" class="btn">Logout</button>
+            </div>
+          {% else %}
+          <div id="choices">
+            <h4 id="loginChoice">Login</h4>
+            <h4 id="signupChoice">Signup</h4>
+          </div>
+          {% endif %}
+          <form id="loginForm" style="display:none">
+            <input
+              name="username"
+              class="form-control input-lg"
+              type="text"
+              placeholder="username"
+              required
+            />
+            <input
+              name="password"
+              class="form-control input-lg"
+              type="text"
+              placeholder="password"
+              required
+            />
+            <button id="login" class="btn">Login</button>
+          </form>
+          <form id="signupForm" style="display:none">
+            <input
+              name="newname"
+              class="form-control input-lg"
+              type="text"
+              placeholder="username"
+              required
+            />
+            <input
+              name="newpassword"
+              class="form-control input-lg"
+              type="text"
+              placeholder="password"
+              required
+            />
+            <button id="signup" class="btn">Signup</button>
+          </form>
+        </div>
+    </div>
+    <div id="main" class="container">
+      <div id="messages">
+      </div>
+      <form id="addItemForm">
+        <input
+          name="title"
+          class="form-control input-lg"
+          type="text"
+          placeholder="Enter an item..."
+          required
+        />
+        <input
+          name="note"
+          class="form-control input-lg"
+          type="text"
+          placeholder="Make a note...(optional)"
+        />
+        <button id="addItem" class="btn"><b>+</b></button>
+      </form>
+      {% if user %}
+        {% if items %}
+        <div class="listContainer">
+        {% for i in items %}
+          <div class="listRow">
+            <div class="listInfo">
+              {{i.title}}
+              {% if i.note %}
+              &nbsp;|&nbsp;<i>{{i.note}}</i>
+              {% endif %}
+            </div>
+            <form class="editItemForm" style="display:none">
+              <input
+                name="title"
+                class="title form-control input-lg"
+                type="text"
+                value="{{i.title}}"
+                required
+              />
+              <input
+                name="note"
+                class="note form-control input-lg"
+                type="text"
+                value="{{i.note}}"
+              />
+              <button class="btn update" value={{i.id}}>Update</button>
+            </form>
+            <div class="listButtons">
+              <button class="btn edit">edit</button>
+              <button class="btn delete" value={{i.id}}>del</button>
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+        {% else %}
+          <div class="info">Your list is empty for now. Start adding shopping items.</div>
+        {% endif %}
+      {% else %}
+      <div class="info">Sign up and create your own shopping list.</div><br>
+      <div class="info">Example:</div>
+      <div class="listContainer">
+        <div class="listRow">
+          <div class="listInfo">
+            grapes
+            &nbsp;|&nbsp;<i>red or green, 1 lb</i>
+          </div>
+          <form class="editItemForm" style="display:none">
+            <input
+              name="title"
+              class="title form-control input-lg"
+              type="text"
+              value="grapes"
+              required
+            />
+            <input
+              name="note"
+              class="note form-control input-lg"
+              type="text"
+              value="red or green, 1 lb"
+            />
+            <button class="btn update">Update</button>
+          </form>
+          <div class="listButtons">
+            <button class="btn edit">edit</button>
+            <button class="btn delete">del</button>
+          </div>
+        </div>
+        <div class="listRow">
+          <div class="listInfo">
+            bread
+            &nbsp;|&nbsp;<i>whole wheat</i>
+          </div>
+          <form class="editItemForm" style="display:none">
+            <input
+              name="title"
+              class="title form-control input-lg"
+              type="text"
+              value="bread"
+              required
+            />
+            <input
+              name="note"
+              class="note form-control input-lg"
+              type="text"
+              value="whole wheat"
+            />
+            <button class="btn update">Update</button>
+          </form>
+          <div class="listButtons">
+            <button class="btn edit">edit</button>
+            <button class="btn delete">del</button>
+          </div>
+        </div>
+        <div class="listRow">
+          <div class="listInfo">
+            yogurt
+            &nbsp;|&nbsp;<i>Greek, fat free</i>
+          </div>
+          <form class="editItemForm" style="display:none">
+            <input
+              name="title"
+              class="title form-control input-lg"
+              type="text"
+              value="yogurt"
+              required
+            />
+            <input
+              name="note"
+              class="note form-control input-lg"
+              type="text"
+              value="Greek, fat free"
+            />
+            <button class="btn update">Update</button>
+          </form>
+          <div class="listButtons">
+            <button class="btn edit">edit</button>
+            <button class="btn delete">del</button>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  <script src="/static/site.js"></script>
+</body>
+</html>
